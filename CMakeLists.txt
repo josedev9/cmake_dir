@@ -1,6 +1,17 @@
 cmake_minimum_required(VERSION 3.12.0)
 project(anotha_one VERSION 1.0.0)
+
+#configuring the versioning 
+configure_file(config.h.in config.h)
+
+#Adding the Add library as an option
+option(USE_ADD "Use the example included library" ON)
+option(USE_GLFW "Use glfw" ON)
+
 add_executable(${PROJECT_NAME} main.cpp)
+
+#add the binaries library to the source code
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR})
 
 #DOWNLOAD ALL THE SUBMODULES
 find_package(Git QUIET)
@@ -31,12 +42,19 @@ if(NOT EXISTS "${PROJECT_SOURCE_DIR}/external/glfw/CMakeLists.txt")
 
 endif()
 
-add_subdirectory(Add) 
-add_subdirectory(external/glfw)
-target_include_directories(${PROJECT_NAME} 
-    PUBLIC "${PROJECT_SOURCE_DIR}/Add/include"
-    PUBLIC "${PROJECT_SOURCE_DIR}/external/glfw/include")
-target_link_directories(${PROJECT_NAME} 
-    PRIVATE "{PROJECT_SOURCE_DIR}/Add/src"
-    PUBLIC "${PROJECT_SOURCE_DIR}/external/glfw/src")
-target_link_libraries(${PROJECT_NAME} Add glfw)
+
+#If the library is added include the dependencies required
+if(USE_ADD)
+    add_subdirectory(Add)
+    target_include_directories(${PROJECT_NAME} PUBLIC "${PROJECT_SOURCE_DIR}/Add/include")
+    target_link_directories(${PROJECT_NAME} PUBLIC "${PROJECT_SOURCE_DIR}/Add/Src")  
+    target_link_libraries(${PROJECT_NAME} Add)  
+endif()
+if(USE_GLFW)
+    add_subdirectory(external/glfw)
+    target_include_directories(${PROJECT_NAME} 
+        PUBLIC "${PROJECT_SOURCE_DIR}/external/glfw/include")
+    target_link_directories(${PROJECT_NAME} 
+        PUBLIC "${PROJECT_SOURCE_DIR}/external/glfw/src")   
+    target_link_libraries(${PROJECT_NAME} glfw)
+endif()

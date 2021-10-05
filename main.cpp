@@ -1,12 +1,21 @@
 #include <iostream>
-#include "add_floats.h"
-#include <GLFW/glfw3.h>
+#include "config.h"
+#ifdef USE_ADD
+#   include "add_floats.h"
+#endif
+
+#ifdef USE_GLFW
+#   include "GLFW/glfw3.h"
+#endif
+
+#include <chrono>
 int main(int argc, char *argv[]){
     std::cout<<"Something to output for example... Dunno."<<std::endl;
+    std::cout<<anotha_one_VERSION_MAJOR<<" is the Major and "<<anotha_one_VERSION_MINOR<<" is the Minor"<<std::endl;
     std::cout<<add_float(3.2f,4.5f)<<std::endl;
 
     GLFWwindow *window;
-
+    static std::chrono::high_resolution_clock::time_point t0=std::chrono::high_resolution_clock::now();
     
 
     if( !glfwInit() )
@@ -25,7 +34,7 @@ int main(int argc, char *argv[]){
 
 
     // Main loop
-    while( !glfwWindowShouldClose(window) )
+    while(std::chrono::duration_cast <std::chrono::milliseconds>(std::chrono::high_resolution_clock::now()-t0).count()<1000 )
     {
 
         // Swap buffers
@@ -36,7 +45,7 @@ int main(int argc, char *argv[]){
     // Terminate GLFW
     glfwTerminate();
 
-    // Exit program
+    // Exit program                                                                                                                                                                                                                                                           
     exit( EXIT_SUCCESS );
     return 0;
 }
