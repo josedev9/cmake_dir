@@ -29,7 +29,7 @@ endif()
 if(NOT EXISTS "${PROJECT_SOURCE_DIR}/external/glfw/CMakeLists.txt")
     message(FATAL_ERROR "glfw submodule was not downloaded! GIT_SUBMODULE was turned off or failed.")
 
-
+endif()
 
 add_subdirectory(Add) 
 add_subdirectory(external/glfw)
