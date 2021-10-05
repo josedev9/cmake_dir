@@ -1,0 +1,5 @@
+#define anotha_one_VERSION_MAJOR @anotha_one_VERSION_MAJOR@
+#define anotha_one_VERSION_MINOR @anotha_one_VERSION_MINOR@
+#cmakedefine USE_ADD
+#cmakedefine USE_GLFW
+
