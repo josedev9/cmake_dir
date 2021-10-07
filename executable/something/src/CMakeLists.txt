@@ -2,17 +2,8 @@ add_executable(${PROJECT_NAME} main.cpp)
 
 target_include_directories(${PROJECT_NAME} 
     PUBLIC "${PROJECT_BINARY_DIR}/executable/something/configure"
-    PUBLIC EXTRA_INCLUDES)
+    PUBLIC ${EXTRA_INCLUDES})
 target_link_directories(${PROJECT_NAME}
-    PUBLIC EXTRA_LIBR)
+    PUBLIC ${EXTRA_LIBS})
 
-if(USE_LIBR)
-    target_link_libraries(${PROJECT_NAME} library)  
-endif()
-
-
-if(USE_GLFW)
-
-    target_link_libraries(${PROJECT_NAME} glfw)
-
-    endif()
+target_link_libraries(${PROJECT_NAME} ${EXTRA_MORE})

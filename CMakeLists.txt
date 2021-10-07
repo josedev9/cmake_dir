@@ -41,7 +41,7 @@ if(USE_LIBR)
     add_subdirectory(library)
     list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/library/include")
     list(APPEND EXTRA_LIBS "${PROJECT_SOURCE_DIR}/library/src")
-    
+    list(APPEND EXTRA_MORE library)
     
 endif()
 
@@ -49,8 +49,11 @@ if(USE_GLFW)
     add_subdirectory(external/glfw)
     list(APPEND EXTRA_INCLUDES "${PROJECT_SOURCE_DIR}/external/glfw/include")
     list(APPEND EXTRA_LIBS "${PROJECT_SOURCE_DIR}/external/glfw/src")
-    
+    list(APPEND EXTRA_MORE glfw)
 endif()
 
 
 add_subdirectory(executable/something)
+
+install(TARGETS ${PROJECT_NAME} DESTINATION bin)
+install(FILES "${PROJECT_BINARY_DIR}/executable/something/configure/configure.h" DESTINATION include)
