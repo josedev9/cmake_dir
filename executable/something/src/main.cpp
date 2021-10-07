@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "configure.h.in"
+#include "configure.h"
 #include <chrono>
 
 static std::chrono::high_resolution_clock::time_point t0= std::chrono::high_resolution_clock::now();
@@ -14,9 +14,9 @@ static std::chrono::high_resolution_clock::time_point t0= std::chrono::high_reso
 #endif
 
 int main(int argc, char const *argv[]){
-    std::cout<<"Project named: '"<<argv[0]<<"' has the following versions"<<linux_VERSION_MAJOR<<" and "<<linux_VERSION_MINOR<<std::endl;
+    std::cout<<"Project named: '"<<argv[0]<<"' has the following versions "<<linux_VERSION_MAJOR<<" and "<<linux_VERSION_MINOR<<std::endl;
     #ifdef USE_LIBR
-        File *ptr=new file("Object name",450);
+        File *ptr=new File("Object name",450);
         ptr->get_num();
     #endif
 
