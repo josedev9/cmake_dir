@@ -1,0 +1,4 @@
+#define linux_VERSION_MAJOR @linux_VERSION_MAJOR@
+#define linux_VERSION_MINOR @linux_VERSION_MINOR@
+#cmakedefine USE_LIBR
+#cmakedefine USE_GLFW
