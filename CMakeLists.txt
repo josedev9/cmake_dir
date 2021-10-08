@@ -5,6 +5,13 @@ project(linux VERSION 2.5.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
+
+#Find libraries configuration
+#find_library()
+
+
+
+
 option(USE_LIBR "Use class library" ON)
 option(USE_GLFW "Use glfw external library" ON)
 #DOWNLOAD ALL THE SUBMODULES
@@ -55,5 +62,14 @@ endif()
 
 add_subdirectory(executable/something)
 
+#Installing files configuration
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
 install(FILES "${PROJECT_BINARY_DIR}/executable/something/configure/configure.h" DESTINATION include)
+
+#Installing using cpack
+
+include(InstallRequiredSystemLibraries)
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_CURRENT_SOURCE_DIR}/License.txt")
+set(CPACK_PACKAGE_VERSION_MAJOR "${Linux_VERSION_MAJOR}")
+set(CPACK_PACKAGE_VERSION_MINOR "${Linux_VERSION_MINOR}")
+include(CPack)
