@@ -1,0 +1,4 @@
+#define windows_VERSION_MAJOR @windows_VERSION_MAJOR@
+#define windows_VERSION_MINOR @windows_VERSION_MINOR@
+#cmakedefine USE_LIBR
+#cmakedefine USE_GLFW
