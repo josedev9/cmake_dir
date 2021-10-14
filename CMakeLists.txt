@@ -40,10 +40,45 @@ endif()
 #END OF SUBMODULES CONFIGURATION
 
 
+#Finding libraries part
+#[[find_library(glew_lib glew NAMES glew2 GLEW GLEW2 DOC "glew library")
+#For this example the REQUIRED keyword will not be used, even thought it is included with this cmake version
+if(${glew_lib} STREQUAL glew_lib-NOTFOUND)
+    message(FATAL_ERROR "glew not found in the system")
+else()
+    message(STATUS "library found while building")
+
+endif()
+]]
+
+
+#Looking for glew with the binaries installed locally
+find_library(glew_libr glew NAMES GLEW2 GLEW glew2 glew32 glew32s
+    PATHS "C:\\Users\\josed\\OneDrive\\Escritorio\\glew-2.1.0"
+    PATH_SUFFIXES 
+        "lib\\release\\x64"
+        "bin\\release\\x64"
+    DOC "glew library")
+
+#Since no required is used manually check if found and add it to the appends
+if(${glew_libr} STREQUAL glew_libr-NOTFOUND)
+    message(FATAL_ERROR "library not found, can't complete the configuration")
+else()
+    message(STATUS "glew library found in the system")
+    list(APPEND EXTRA_INCLUDES "C:\\Users\\josed\\OneDrive\\Escritorio\\glew-2.1.0\\include")
+    list(APPEND EXTRA_DIR "${glew_libr}")
+    
+endif()
+
+
+
+
+
+
 if(USE_LIBRARY)
     add_subdirectory(Library)
-    list(APPEND EXTRA_INCLUDES "${CMAKE_SOURCE_DIR/LIBRARY/include}")
-    list(APPEND EXTRA_LIBR "${CMAKE_SOURCE_DIR/LIBRARY/src}")
+    list(APPEND EXTRA_INCLUDES "${CMAKE_SOURCE_DIR/Library/include}")
+    list(APPEND EXTRA_LIBR "${CMAKE_SOURCE_DIR/Library/src}")
     list(APPEND EXTRA_DIR Library)
 endif()
 
@@ -56,3 +91,11 @@ endif()
 
 
 add_subdirectory(executable/another_level)
+
+#Adding the CPack part into the project
+include(InstallRequiredSystemLibraries)
+
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/License.txt")
+set(CPACK_VERSION_MAJOR "${${PROJECT_NAME}_VERSION_MAJOR}")
+set(CPACK_VERSION_MINOR "${${PROJECT_NAME}_VERSION_MINOR}")
+include(CPack)
