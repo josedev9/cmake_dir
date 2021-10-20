@@ -54,7 +54,7 @@ endif()
 
 #Looking for glew with the binaries installed locally
 find_library(glew_libr glew NAMES GLEW2 GLEW glew2 glew32 glew32s
-    PATHS "C:\\Users\\josed\\OneDrive\\Escritorio\\glew-2.1.0"
+    PATHS "C:\\Users\\10655707\\Desktop\\glew-2.1.0"
     PATH_SUFFIXES 
         "lib\\release\\x64"
         "bin\\release\\x64"
@@ -65,7 +65,7 @@ if(${glew_libr} STREQUAL glew_libr-NOTFOUND)
     message(FATAL_ERROR "library not found, can't complete the configuration")
 else()
     message(STATUS "glew library found in the system")
-    list(APPEND EXTRA_INCLUDES "C:\\Users\\josed\\OneDrive\\Escritorio\\glew-2.1.0\\include")
+    list(APPEND EXTRA_INCLUDES "C:\\Users\\10655707\\Desktop\\glew-2.1.0\\include")
     list(APPEND EXTRA_DIR "${glew_libr}")
     
 endif()
