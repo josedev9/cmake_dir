@@ -1,0 +1,4 @@
+#define opencv_VERSION_MAJOR @opencv_VERSION_MAJOR@
+#define opencv_VERSION_MINOR @opencv_VERSION_MINOR@
+#cmakedefine USE_TEMP
+#cmakedefine USE_OPENCV
