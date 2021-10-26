@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED true)
 
 option(USE_TEMP "Use the temporization library created locally" ON)
-option(USE_OPENCV "Use opencv library to compute the camera's captured frames" OFF)
+option(USE_OPENCV "Use opencv library to compute the camera's captured frames" ON)
 
 
 if(USE_TEMP)
@@ -18,10 +18,6 @@ if(USE_TEMP)
      
 endif()
 
-if(USE_OPENCV)
-    message(status "Using opencv")
-    
-endif()
 
 
 add_subdirectory(main_dir/recording)

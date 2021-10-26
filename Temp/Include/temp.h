@@ -1,6 +1,6 @@
 #include <iostream>
 #include <chrono>
 
-bool create_defined_temporization(double time,double wait_time,void (*func)(int i));
+bool create_defined_temporization(double time,double wait_time,std::string (*func)());
 
-void printxx(int num);
+std::string getDateandTime();
