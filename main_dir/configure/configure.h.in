@@ -1,0 +1,4 @@
+#define optical_flow_VERSION_MAJOR @optical_flow_VERSION_MAJOR@
+#define optical_flow_VERSION_MINOR @optical_flow_VERSION_MINOR@
+#cmakedefine USE_OPENCV 
+#cmakedefine USE_LIBR
