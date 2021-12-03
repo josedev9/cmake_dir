@@ -10,6 +10,7 @@
 #endif
 
 int main(int argc, const char * argv[]){
+    //Testing the state of the cmake project
     std::cout<< "File named " << argv[0] <<" executed with versions Major " <<optical_flow_VERSION_MAJOR<<" and Minor "<<optical_flow_VERSION_MAJOR <<std::endl;
     print_version();
     return 0;

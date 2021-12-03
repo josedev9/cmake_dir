@@ -2,3 +2,5 @@
 #define optical_flow_VERSION_MINOR @optical_flow_VERSION_MINOR@
 #cmakedefine USE_OPENCV 
 #cmakedefine USE_LIBR
+#cmakedefine USE_FILE
+#cmakedefine USE_WEBCAM

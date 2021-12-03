@@ -9,6 +9,8 @@ project(optical_flow VERSION 1.0.0)
 
 option(USE_OPENCV "Select this option to link the opencv compiled library" true)
 option(USE_LIBR "Select this flag to use the external library created" true)
+option(USE_FILE "For the file example in the reading_and_writing_videos.cpp file" false)
+option(USE_WEBCAM "For the usage of webcam" true)
 
 
 if(USE_OPENCV)
