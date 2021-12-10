@@ -2,7 +2,7 @@
 #include "configure.h"
 
 #ifdef USE_OPENCV
-#   include "opencv2/opencv.hpp"
+#   include <opencv2/opencv.hpp>
 #endif
 
 int main(int argc, char const *argv[]){
@@ -26,29 +26,29 @@ int main(int argc, char const *argv[]){
     //In theory make patches of MxN size
     for(int y=0;y<height;y+=M){
         for(int x=0;x<width;x+=N){
-            if((width-x)<N || (height-y)<M){break;}
+            if((width-x)<N || (height-y)<M){
+                cv::rectangle(image_input,cv::Point(0,0),cv::Point(width-1,height-1),cv::Scalar(255,0,0),1);
+                break;}
             y1=y+M;
             x1=x+N;
             std::string a=std::to_string(x);
             std::string b=std::to_string(y);
 
-            if(x1 > width && y1 > height){
-                x=width-1;
+            if(x1 >= width && y1 >= height){
                 x1=width-1;
-                y=width-1;
                 y1=width-1;
                 cv::Mat tiles=image(cv::Range(y,height),cv::Range(x,width));
                 cv::rectangle(image_input,cv::Point(x,y),cv::Point(x1,y1),cv::Scalar(0,0,255),1);
             }
 
-            else if(y1>height){
+            else if(y1>=height){
                 y=height-1;
                 y1=height-1;
                 cv::Mat tiles=image(cv::Range(y,height),cv::Range(x,x+N));
                 cv::rectangle(image_input,cv::Point(x,y),cv::Point(x1,y1),cv::Scalar(0,0,255),1);
             }
 
-            else if(x1>width){
+            else if(x1>=width){
                 x=width-1;
                 x1=width-1;
                 cv::Mat tiles=image(cv::Range(y,y+M),cv::Range(x,width));
@@ -56,7 +56,7 @@ int main(int argc, char const *argv[]){
             }
             else{
                 cv::Mat tiles = image(cv::Range(y, y+M), cv::Range(x, x+N));
-                cv::rectangle(image_input, cv::Point(x,y), cv::Point(x1,y1), cv::Scalar(0,255,0), 1); 
+                cv::rectangle(image_input, cv::Point(x,y), cv::Point(x1,y1), cv::Scalar(0,0,255), 1); 
             }
         }
     }
